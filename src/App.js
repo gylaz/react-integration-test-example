@@ -22,11 +22,13 @@ function setData(data) {
 }
 
 function fetchData() {
-  return axios.get("http://echo.jsontest.com/key/value/one/two");
+  return axios
+    .get("http://echo.jsontest.com/key/value/one/two")
+    .then(response => response.data);
 }
 
 function getData(dispatch) {
-  return () => fetchData().then(response => dispatch(setData(response.data)));
+  return () => fetchData().then(data => dispatch(setData(data)));
 }
 
 class App extends Component {
